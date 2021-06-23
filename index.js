@@ -21,9 +21,9 @@ async function checkLeetCode(userName) {
     }).then(res => res.json())
         .then(res => {
 
-            const questionData = res.data.allQuestionsCount;
-            const userData = res.data.matchedUser;
-            const solvedData = userData.submitStats.acSubmissionNum;
+            let questionData = res.data.allQuestionsCount;
+            let userData = res.data.matchedUser;
+            let solvedData = userData.submitStats.acSubmissionNum;
 
             leetCodeData['allQuestionsCount'] = questionData[0].count;
             leetCodeData['easyQuestionsCount'] = questionData[1].count;
@@ -54,11 +54,10 @@ async function checkLeetCode(userName) {
         });
 }
 
-
 function updateFiles(data) {
     Object.keys(data).forEach(function (key) {
         //check to see if txt files already exist (if not, make them)
-        let filePath = path.join(locationOfResults, key + ".txt");
+        let filePath = path.join('.', locationOfResults, key + ".txt");
         let contentsOfFile = fs.readFileSync(filePath, 'utf-8');
 
         if (!contentsOfFile || contentsOfFile !== String(data[key])) {
@@ -66,7 +65,6 @@ function updateFiles(data) {
         }
     });
 }
-
 
 async function prepareDirectory(location, data) {
     if (!await fs.existsSync(location)) {
@@ -81,30 +79,7 @@ async function prepareDirectory(location, data) {
     });
 }
 
-async function destroyDirectory(location) {
-    await fs.rm(path.join('./', location), {recursive: true});
-}
-
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-
-async function exitHandler() {
-    try {
-        if (await fs.existsSync(locationOfResults)) {
-            await destroyDirectory(path.join('.',locationOfResults), {recursive: true});
-            // process.exit(23);
-        }
-    } catch (e) {
-        console.error('EXIT HANDLER ERROR', e);
-    }
-}
-
-
-
-[`exit`, `SIGINT`, `SIGUSR1`, `SIGUSR2`, `uncaughtException`, `SIGTERM`].forEach((eventType) => {
-    process.on(eventType, exitHandler);
-});
-
 
 async function main(userName) {
 
