@@ -89,7 +89,7 @@ async function main(userName) {
 
     while (true) {
         checkLeetCode(userName);
-        await delay(20000)
+        await delay(10000)
     }
 }
 
