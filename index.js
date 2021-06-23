@@ -62,6 +62,7 @@ function updateFiles(data) {
 
         if (!contentsOfFile || contentsOfFile !== String(data[key])) {
             fs.writeFileSync(filePath, String(data[key]));
+            console.log(`${key} is being updated to:\t${data[key]}`)
         }
     });
 }
@@ -99,7 +100,7 @@ if (require.main === module) {
         userName = prompt("Enter the LeetCode username to monitor:")
     }
 
-    console.log(`Monitoring ${userName}'s LeetCode profile for updates.`);
+    console.log(`Monitoring ${userName}'s LeetCode profile for updates.\n`);
     main(userName);
 }
 
