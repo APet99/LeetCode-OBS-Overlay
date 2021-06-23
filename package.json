@@ -1,0 +1,28 @@
+{
+  "name": "leetcode-overlay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Alex Peterson",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-fetch": "^3.0.0",
+    "node-fetch": "^2.6.1",
+    "prompt-sync": "^4.2.0"
+  },
+  "bin": "index.js",
+  "pkg": {
+    "assets": [
+      "./node_modules/isomorphic-fetch",
+      "./node_modules/whatwg-fetch",
+      "./node_modules/node-fetch",
+      "./node_modules/ansi-regex",
+      "./node_modules/prompt-sync",
+      "./node_modules/strip-ansi"
+    ]
+  }
+}
